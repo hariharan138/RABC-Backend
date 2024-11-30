@@ -15,7 +15,7 @@ app.use(express.json());
 // Use the User routes
 app.use('/api/users', userRoutes);
 
-app.use("/",(req, res) => {
+app.get("/", async (req, res) => {
   try {
       const users = await User.find({});
       res.status(200).json({
@@ -29,7 +29,7 @@ app.use("/",(req, res) => {
           message: err.message,
       });
   }
-})
+});
 
 // MongoDB Atlas Connection URI from environment variable
 const MONGODB_URI = process.env.MONGODB_URI;
